@@ -34,7 +34,8 @@ const StarsBackground = () => {
     starsRef.current = Array.from({ length: COUNT }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 1.4 + 0.4,
+      // size: Math.random() * 1.4 + 0.4,
+      size: Math.random() * 0.6 + 0.3,
       speed: Math.random() * 0.25 + 0.05,      // slow upward drift
       opacity: Math.random() * 0.4 + 0.1,
       opacityDelta: (Math.random() * 0.004 + 0.001) * (Math.random() < 0.5 ? 1 : -1),
