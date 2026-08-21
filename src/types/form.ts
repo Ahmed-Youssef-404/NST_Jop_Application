@@ -60,9 +60,13 @@ export type Question =
   | MultiChoiceQuestion
   | ScaleQuestion
 
-export interface RoleDefinition {
+
+
+import type { LucideIcon } from "lucide-react"
+  export interface RoleDefinition {
   id: RoleId
-  emoji: string
+  emoji?: string
+  icon: LucideIcon
   title: string
   shortDescription: string
   fullDescription: string

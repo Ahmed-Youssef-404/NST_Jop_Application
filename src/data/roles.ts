@@ -1,9 +1,15 @@
+import {
+  BriefcaseBusiness,
+  ChartNoAxesCombined,
+  GraduationCap,
+} from "lucide-react"
+
 import type { RoleDefinition } from "@/types/form"
 
 export const roles: RoleDefinition[] = [
   {
     id: "operations",
-    emoji: "⚙️",
+    icon: BriefcaseBusiness,
     title: "Operations & Strategy Partner",
     shortDescription:
       "Work closely with the Founder to coordinate operations and turn ideas into action.",
@@ -19,7 +25,7 @@ export const roles: RoleDefinition[] = [
   },
   {
     id: "growth",
-    emoji: "🚀",
+    icon: ChartNoAxesCombined,
     title: "Growth & Outreach Team",
     shortDescription:
       "Drive NST's growth through campaigns, content, partnerships, and events.",
@@ -35,7 +41,7 @@ export const roles: RoleDefinition[] = [
   },
   {
     id: "mentorship",
-    emoji: "🎓",
+    icon: GraduationCap,
     title: "Mentorship & Assessment Team",
     shortDescription:
       "Support students through their training journey and help assess applicants.",
@@ -51,5 +57,6 @@ export const roles: RoleDefinition[] = [
   },
 ]
 
-export const getRoleById = (id: string): RoleDefinition | undefined =>
-  roles.find((r) => r.id === id)
+export const getRoleById = (
+  id: string
+): RoleDefinition | undefined => roles.find((r) => r.id === id)

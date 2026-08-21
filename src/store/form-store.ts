@@ -18,7 +18,8 @@ interface FormState {
   submissionError: string | undefined
 
   setPhase: (phase: FormPhase) => void
-  setRole: (role: RoleId) => void
+  setRole: (role: RoleId | undefined) => void // Allow undefined
+  toggleRole: (role: RoleId) => void // New toggle function
   setAnswer: (questionId: string, value: AnswerValue) => void
   goToStep: (index: number) => void
   nextStep: (totalSteps: number) => void
@@ -40,11 +41,41 @@ export const useFormStore = create<FormState>((set, get) => ({
 
   setPhase: (phase) => set({ phase }),
 
-  setRole: (role) =>
-    set({
+  setRole: (role) => {
+    // If role is undefined, just update selectedRole and remove from answers
+    if (role === undefined) {
+      const { role_selected, ...restAnswers } = get().answers
+      return set({
+        selectedRole: undefined,
+        answers: restAnswers,
+      })
+    }
+    
+    // Otherwise set the role and update answers
+    return set({
       selectedRole: role,
       answers: { ...get().answers, role_selected: role },
-    }),
+    })
+  },
+
+  // New toggle function
+  toggleRole: (role) => {
+    const current = get().selectedRole
+    if (current === role) {
+      // Deselect: remove role from answers
+      const { role_selected, ...restAnswers } = get().answers
+      set({
+        selectedRole: undefined,
+        answers: restAnswers,
+      })
+    } else {
+      // Select: update role and answers
+      set({
+        selectedRole: role,
+        answers: { ...get().answers, role_selected: role },
+      })
+    }
+  },
 
   setAnswer: (questionId, value) =>
     set((state) => ({

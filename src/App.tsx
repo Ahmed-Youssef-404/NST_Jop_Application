@@ -8,7 +8,7 @@ import { useFormStore } from "@/store/form-store"
 import StarsBackground from "@/components/StarsBackground"
 
 function App() {
-  const { phase, setPhase, selectedRole, setRole } = useFormStore()
+  const { phase, setPhase, selectedRole, toggleRole } = useFormStore() // Use toggleRole
 
   return (
     <div className="min-h-screen bg-background" dir="ltr">
@@ -25,7 +25,7 @@ function App() {
           <RolesOverviewPage
             key="roles-overview"
             selectedRole={selectedRole}
-            onSelectRole={setRole}
+            onSelectRole={toggleRole} // Use toggleRole instead of setRole
             onBack={() => setPhase("intro")}
             onContinue={() => setPhase("form")}
           />
