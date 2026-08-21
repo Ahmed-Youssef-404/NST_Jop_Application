@@ -141,14 +141,18 @@ export function IntroPage({ onContinue }: IntroPageProps) {
               />
 
               {/* Main circle */}
-              <div className="absolute inset-11 flex items-center justify-center rounded-full border border-primary/10 bg-[#120d02c5] shadow-2xl shadow-primary/10">
+              <div className="absolute inset-11 flex items-center justify-center rounded-full border border-primary/10 bg-background/70 shadow-2xl shadow-primary/10">
                 <div className="text-center">
                   <div className="mb-2 text-6xl font-black tracking-[-0.08em] text-primary">
+                    {/* NST */}
                     <img src="/logo1.png" className="h-40" alt="NST" />
                   </div>
 
                   <div className="mx-auto h-px w-10 bg-border" />
 
+                  {/* <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
+                    Student Community
+                  </p> */}
                 </div>
               </div>
 
