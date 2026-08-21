@@ -22,12 +22,12 @@ export function buildFormSteps(
   const steps: FormStep[] = [
     {
       id: "basic-info",
-      title: "المعلومات الأساسية",
+      title: "Basic Information",
       questions: basicInfoQuestions,
     },
     {
       id: "general",
-      title: "أسئلة عامة",
+      title: "General Questions",
       questions: generalQuestions,
     },
   ]
@@ -39,14 +39,14 @@ export function buildFormSteps(
   if (role) {
     steps.push({
       id: `role-${role}`,
-      title: "أسئلة خاصة بالدور",
+      title: "Role-Specific Questions",
       questions: getRoleQuestions(role),
     })
   }
 
   steps.push({
     id: "final",
-    title: "أسئلة ختامية",
+    title: "Final Questions",
     questions: finalQuestions,
   })
 

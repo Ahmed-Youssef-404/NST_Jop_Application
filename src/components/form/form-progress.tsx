@@ -17,7 +17,7 @@ export function FormProgress({
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between text-sm text-muted-foreground">
         <span>
-          خطوة {currentStep + 1} من {totalSteps}
+          Step {currentStep + 1} of {totalSteps}
         </span>
         <span className="font-medium text-foreground">{stepTitle}</span>
       </div>

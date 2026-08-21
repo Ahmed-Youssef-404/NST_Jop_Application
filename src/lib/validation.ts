@@ -18,7 +18,7 @@ export function buildSchemaForQuestions(questions: Question[]) {
       case "short-text": {
         fieldSchema = z.string().trim()
         if (q.required) {
-          fieldSchema = (fieldSchema as z.ZodString).min(1, "هذا الحقل مطلوب")
+          fieldSchema = (fieldSchema as z.ZodString).min(1, "This field is required")
         } else {
           fieldSchema = fieldSchema.optional()
         }
@@ -27,9 +27,10 @@ export function buildSchemaForQuestions(questions: Question[]) {
       case "paragraph": {
         fieldSchema = z.string().trim()
         if (q.required) {
+          const minLength = q.minLength ?? MIN_PARAGRAPH_LENGTH
           fieldSchema = (fieldSchema as z.ZodString).min(
-            q.minLength ?? MIN_PARAGRAPH_LENGTH,
-            `من فضلك اكتب إجابة أكثر تفصيلاً (${q.minLength ?? MIN_PARAGRAPH_LENGTH} أحرف على الأقل)`
+            minLength,
+            `Please provide a more detailed answer (minimum ${minLength} characters) - this helps us better understand your response`
           )
         } else {
           fieldSchema = fieldSchema.optional()
@@ -39,7 +40,7 @@ export function buildSchemaForQuestions(questions: Question[]) {
       case "single-choice": {
         fieldSchema = z.string()
         if (q.required) {
-          fieldSchema = (fieldSchema as z.ZodString).min(1, "من فضلك اختر إجابة")
+          fieldSchema = (fieldSchema as z.ZodString).min(1, "Please select an answer")
         } else {
           fieldSchema = fieldSchema.optional()
         }
@@ -50,7 +51,7 @@ export function buildSchemaForQuestions(questions: Question[]) {
         if (q.required) {
           fieldSchema = (fieldSchema as z.ZodArray<z.ZodString>).min(
             1,
-            "من فضلك اختر خيارًا واحدًا على الأقل"
+            "Please select at least one option"
           )
         } else {
           fieldSchema = fieldSchema.optional()

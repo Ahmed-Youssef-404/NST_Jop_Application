@@ -25,7 +25,7 @@ export async function submitApplication(
       return {
         success: false,
         errorMessage:
-          data?.error ?? "حدث خطأ أثناء إرسال الطلب. من فضلك حاول مرة أخرى.",
+          data?.error ?? "Something went wrong while submitting. Please try again.",
       }
     }
 
@@ -34,7 +34,7 @@ export async function submitApplication(
     return {
       success: false,
       errorMessage:
-        "تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.",
+        "Couldn't reach the server. Check your internet connection and try again.",
     }
   }
 }

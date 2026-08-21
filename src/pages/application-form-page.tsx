@@ -128,25 +128,25 @@ export function ApplicationFormPage() {
           onClick={handleBack}
           disabled={currentStepIndex === 0 || isSubmitting}
         >
-          <ArrowRight className="size-4" />
-          السابق
+          <ArrowLeft className="size-4" />
+          Back
         </Button>
 
         <Button size="lg" onClick={handleNext} disabled={isSubmitting}>
           {isSubmitting ? (
             <>
               <Loader2 className="size-4 animate-spin" />
-              جاري الإرسال...
+              Submitting...
             </>
           ) : isLastStep ? (
             <>
-              إرسال الطلب
+              Submit application
               <Send className="size-4" />
             </>
           ) : (
             <>
-              التالي
-              <ArrowLeft className="size-4" />
+              Next
+              <ArrowRight className="size-4" />
             </>
           )}
         </Button>

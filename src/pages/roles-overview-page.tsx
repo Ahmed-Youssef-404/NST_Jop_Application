@@ -28,11 +28,11 @@ export function RolesOverviewPage({
     >
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          اختر الدور الذي تتقدم إليه
+          Choose the role you're applying for
         </h1>
         <p className="max-w-md text-muted-foreground">
-          اقرأ وصف كل دور جيدًا قبل الاختيار — الأسئلة التالية ستختلف حسب
-          الدور الذي تحدده.
+          Read each role carefully before choosing — the questions ahead
+          depend on the track you select.
         </p>
       </div>
 
@@ -48,7 +48,7 @@ export function RolesOverviewPage({
                 isSelected && "border-primary ring-2 ring-primary/20"
               )}
             >
-              <CardContent className="flex flex-col gap-3 text-right">
+              <CardContent className="flex flex-col gap-3 text-left">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">{role.emoji}</span>
@@ -80,12 +80,12 @@ export function RolesOverviewPage({
 
       <div className="flex items-center justify-between gap-3 pt-2">
         <Button variant="ghost" onClick={onBack}>
-          <ArrowRight className="size-4" />
-          رجوع
+          <ArrowLeft className="size-4" />
+          Back
         </Button>
         <Button size="lg" disabled={!selectedRole} onClick={onContinue}>
-          متابعة تقديم الطلب
-          <ArrowLeft className="size-4" />
+          Continue to application
+          <ArrowRight className="size-4" />
         </Button>
       </div>
     </motion.div>

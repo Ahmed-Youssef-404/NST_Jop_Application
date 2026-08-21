@@ -5,13 +5,15 @@ import { ApplicationFormPage } from "@/pages/application-form-page"
 import { TerminatedPage } from "@/pages/terminated-page"
 import { SubmittedPage } from "@/pages/submitted-page"
 import { useFormStore } from "@/store/form-store"
+import StarsBackground from "@/components/StarsBackground"
 
 function App() {
   const { phase, setPhase, selectedRole, setRole } = useFormStore()
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir="ltr">
       <AnimatePresence mode="wait">
+        <StarsBackground/>
         {phase === "intro" && (
           <IntroPage
             key="intro"
