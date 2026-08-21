@@ -1,0 +1,44 @@
+import { AnimatePresence } from "framer-motion"
+import { IntroPage } from "@/pages/intro-page"
+import { RolesOverviewPage } from "@/pages/roles-overview-page"
+import { ApplicationFormPage } from "@/pages/application-form-page"
+import { TerminatedPage } from "@/pages/terminated-page"
+import { SubmittedPage } from "@/pages/submitted-page"
+import { useFormStore } from "@/store/form-store"
+
+function App() {
+  const { phase, setPhase, selectedRole, setRole } = useFormStore()
+
+  return (
+    <div className="min-h-screen bg-background" dir="rtl">
+      <AnimatePresence mode="wait">
+        {phase === "intro" && (
+          <IntroPage
+            key="intro"
+            onContinue={() => setPhase("roles-overview")}
+          />
+        )}
+
+        {phase === "roles-overview" && (
+          <RolesOverviewPage
+            key="roles-overview"
+            selectedRole={selectedRole}
+            onSelectRole={setRole}
+            onBack={() => setPhase("intro")}
+            onContinue={() => setPhase("form")}
+          />
+        )}
+
+        {(phase === "form" || phase === "submitting") && (
+          <ApplicationFormPage key="form" />
+        )}
+
+        {phase === "terminated" && <TerminatedPage key="terminated" />}
+
+        {phase === "submitted" && <SubmittedPage key="submitted" />}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+export default App
