@@ -144,14 +144,15 @@ export function IntroPage({ onContinue }: IntroPageProps) {
               <div className="absolute inset-11 flex items-center justify-center rounded-full border border-primary/10 bg-background/70 shadow-2xl shadow-primary/10 backdrop-blur-xl">
                 <div className="text-center">
                   <div className="mb-2 text-6xl font-black tracking-[-0.08em] text-primary">
-                    NST
+                    {/* NST */}
+                    <img src="/logo1.png" className="h-40" alt="NST" />
                   </div>
 
                   <div className="mx-auto h-px w-10 bg-border" />
 
-                  <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
+                  {/* <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
                     Student Community
-                  </p>
+                  </p> */}
                 </div>
               </div>
 
@@ -178,7 +179,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute bottom-16 left-0 rounded-xl border bg-background/80 px-3 py-2 text-xs shadow-xl backdrop-blur-md"
+                className="absolute bottom-10 left-0 rounded-xl border bg-background/80 px-3 py-2 text-xs shadow-xl backdrop-blur-md"
               >
                 <div className="text-[10px] text-muted-foreground">
                   Build
