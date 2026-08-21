@@ -27,7 +27,12 @@ function App() {
 
     const path = location.pathname
 
-    if (path.startsWith("/form") && !selectedRole) {
+    // Only bounce back to /roles if we're actually still meant to be on the
+    // form (phase === "form"). Once phase has moved on to "submitted" or
+    // "terminated", selectedRole may already have been cleared (e.g. right
+    // after a successful submit clears persisted data) — that's not a sign
+    // of an invalid deep link, just cleanup, so don't redirect on it.
+    if (path.startsWith("/form") && phase === "form" && !selectedRole) {
       navigate("/roles", { replace: true })
       return
     }

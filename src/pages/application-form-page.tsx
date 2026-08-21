@@ -126,8 +126,8 @@ export function ApplicationFormPage() {
 
     if (result.success) {
       setPhase("submitted")
-      clearPersisted()
       navigate("/submitted")
+      clearPersisted()
     } else {
       setSubmissionError(result.errorMessage)
       setPhase("form")

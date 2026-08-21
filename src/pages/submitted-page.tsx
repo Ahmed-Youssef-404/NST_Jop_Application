@@ -20,17 +20,18 @@ export function SubmittedPage() {
       </motion.div>
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold tracking-tight">
-          شكرًا لتقديمك للانضمام إلى فريق NST
+          Thank you for applying to join the NST team
         </h1>
         <p className="text-muted-foreground">
-          سيتم مراجعة طلبك بعناية بناءً على إجاباتك، دوافعك، مدى ملاءمتك
-          للدور، وإمكاناتك بشكل عام.
+          Your application will be carefully reviewed based on your responses,
+          motivation, fit for the role, and overall potential.
         </p>
       </div>
       <Card className="w-full">
         <CardContent className="text-sm text-muted-foreground">
-          سيتم التواصل مع المتقدمين المرشحين للمرحلة التالية من عملية
-          الاختيار. بالتوفيق، وشكرًا لاهتمامك ببناء NST معنا.
+          Shortlisted candidates will be contacted for the next stage of the
+          selection process. Good luck, and thank you for your interest in
+          building NST with us.
         </CardContent>
       </Card>
     </motion.div>
