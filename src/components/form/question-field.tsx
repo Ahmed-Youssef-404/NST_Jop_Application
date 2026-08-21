@@ -55,6 +55,7 @@ function QuestionInput({
           onChange={(e) => onChange(e.target.value)}
           placeholder={question.placeholder}
           aria-invalid={!!error}
+          className="bg-input border-secondary/30 backdrop-blur-2xl px-3 py-2 text-foreground"
         />
       )
 
@@ -67,6 +68,7 @@ function QuestionInput({
           placeholder={question.placeholder}
           rows={4}
           aria-invalid={!!error}
+          className="bg-input border-secondary/30 backdrop-blur-2xl px-3 py-2 text-foreground"
         />
       )
 
@@ -82,8 +84,8 @@ function QuestionInput({
               key={opt.value}
               htmlFor={`${question.id}-${opt.value}`}
               className={cn(
-                "flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-colors hover:bg-accent",
-                value === opt.value && "border-primary bg-accent"
+                "flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-colors bg-input hover:bg-primary/60 backdrop-blur-2xl",
+                value === opt.value && "border-primary bg-primary-light/30"
               )}
             >
               <RadioGroupItem value={opt.value} id={`${question.id}-${opt.value}`} />
@@ -109,8 +111,8 @@ function QuestionInput({
               key={opt.value}
               htmlFor={`${question.id}-${opt.value}`}
               className={cn(
-                "flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-colors hover:bg-accent",
-                selected.includes(opt.value) && "border-primary bg-accent"
+                "flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-colors hover:bg-primary/60 backdrop-blur-2xl",
+                selected.includes(opt.value) && "border-primary bg-primary-light/30"
               )}
             >
               <Checkbox

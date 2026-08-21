@@ -12,9 +12,12 @@
   --surface: #0a0a0f;
   --surface-2: #111118;
   --surface-3: #181822;
+  --input: #111118;
 
   /* Brand */
-  --primary: #bdae1f;
+  /* --primary: #bdae1f;
+  --primary-light: #d4c43a; */
+  --primary: #b0a43a;
   --primary-light: #d4c43a;
   --secondary: #e09d32;
   --accent: #c73d23;
@@ -60,6 +63,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-input: var(--input);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -70,6 +74,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-primary-light: var(--primary-light);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
