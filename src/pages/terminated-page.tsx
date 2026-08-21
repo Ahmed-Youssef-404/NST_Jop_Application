@@ -15,16 +15,16 @@ export function TerminatedPage() {
       </div>
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold tracking-tight">
-          شكرًا لوقتك
+          Thank You for Your Time
         </h1>
         <p className="text-muted-foreground">
-          نتفهم أن الأدوار التطوعية غير المدفوعة قد لا تناسب ظروفك الحالية.
-          نقدّر اهتمامك بـ NST، ونتمنى لك التوفيق.
+          We understand that unpaid volunteer roles may not fit your current situation.
+          We appreciate your interest in NST and wish you all the best.
         </p>
       </div>
       <Card className="w-full">
         <CardContent className="text-sm text-muted-foreground">
-          إذا تغيرت ظروفك مستقبلًا، يسعدنا استقبال طلبك مرة أخرى.
+          If your circumstances change in the future, we'd be happy to receive your application again.
         </CardContent>
       </Card>
     </motion.div>
