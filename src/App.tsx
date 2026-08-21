@@ -1,4 +1,6 @@
 import { AnimatePresence } from "framer-motion"
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom"
+import { useEffect } from "react"
 import { IntroPage } from "@/pages/intro-page"
 import { RolesOverviewPage } from "@/pages/roles-overview-page"
 import { ApplicationFormPage } from "@/pages/application-form-page"
@@ -6,38 +8,93 @@ import { TerminatedPage } from "@/pages/terminated-page"
 import { SubmittedPage } from "@/pages/submitted-page"
 import { useFormStore } from "@/store/form-store"
 import StarsBackground from "@/components/StarsBackground"
+import { TERMINATING_QUESTION_ID } from "@/data/questions"
 
 function App() {
-  const { phase, setPhase, selectedRole, toggleRole } = useFormStore() // Use toggleRole
+  const { phase, setPhase, selectedRole, toggleRole, answers, hasHydrated } =
+    useFormStore()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  // Guard against deep-linking into a route the current state doesn't
+  // support (e.g. opening /form directly with no role chosen, or /submitted
+  // without ever having submitted). Sends the user back to the right place
+  // instead of showing a broken screen. Wait for localStorage rehydration
+  // first so a refresh mid-form doesn't briefly bounce to "/" before the
+  // saved role/answers are back in memory.
+  useEffect(() => {
+    if (!hasHydrated) return
+
+    const path = location.pathname
+
+    if (path.startsWith("/form") && !selectedRole) {
+      navigate("/roles", { replace: true })
+      return
+    }
+
+    if (path === "/terminated" && answers[TERMINATING_QUESTION_ID] !== "No") {
+      // Not actually in a terminated state — don't allow direct access.
+      navigate("/", { replace: true })
+      return
+    }
+
+    if (path === "/submitted" && phase !== "submitted") {
+      navigate("/", { replace: true })
+      return
+    }
+  }, [location.pathname, selectedRole, phase, answers, navigate, hasHydrated])
+
+  if (!hasHydrated) {
+    // Brief, practically-instant gate while zustand reads localStorage,
+    // so we never flash the wrong page before a refresh restores state.
+    return <div className="min-h-screen bg-background" dir="ltr" />
+  }
 
   return (
     <div className="min-h-screen bg-background" dir="ltr">
+      <StarsBackground />
       <AnimatePresence mode="wait">
-        <StarsBackground/>
-        {phase === "intro" && (
-          <IntroPage
-            key="intro"
-            onContinue={() => setPhase("roles-overview")}
+        <Routes location={location} key={location.pathname}>
+          <Route
+            path="/"
+            element={
+              <IntroPage
+                key="intro"
+                onContinue={() => {
+                  setPhase("roles-overview")
+                  navigate("/roles")
+                }}
+              />
+            }
           />
-        )}
 
-        {phase === "roles-overview" && (
-          <RolesOverviewPage
-            key="roles-overview"
-            selectedRole={selectedRole}
-            onSelectRole={toggleRole} // Use toggleRole instead of setRole
-            onBack={() => setPhase("intro")}
-            onContinue={() => setPhase("form")}
+          <Route
+            path="/roles"
+            element={
+              <RolesOverviewPage
+                key="roles-overview"
+                selectedRole={selectedRole}
+                onSelectRole={toggleRole}
+                onBack={() => {
+                  setPhase("intro")
+                  navigate("/")
+                }}
+                onContinue={() => {
+                  setPhase("form")
+                  navigate("/form")
+                }}
+              />
+            }
           />
-        )}
 
-        {(phase === "form" || phase === "submitting") && (
-          <ApplicationFormPage key="form" />
-        )}
+          <Route path="/form" element={<ApplicationFormPage key="form" />} />
 
-        {phase === "terminated" && <TerminatedPage key="terminated" />}
+          <Route path="/terminated" element={<TerminatedPage key="terminated" />} />
 
-        {phase === "submitted" && <SubmittedPage key="submitted" />}
+          <Route path="/submitted" element={<SubmittedPage key="submitted" />} />
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </AnimatePresence>
     </div>
   )

@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { AnimatePresence } from "framer-motion"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { ArrowLeft, ArrowRight, Loader2, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FormProgress } from "@/components/form/form-progress"
@@ -20,27 +21,65 @@ export function ApplicationFormPage() {
     answers,
     phase,
     setAnswer,
-    nextStep,
-    prevStep,
+    goToStep,
     setPhase,
     setSubmissionError,
     submissionError,
+    clearPersisted,
+    hasHydrated,
   } = useFormStore()
 
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   // isTerminated is only meaningful once the terminating question is actually answered "No"
-  const isTerminated =
-    answers[TERMINATING_QUESTION_ID] === "No"
+  const isTerminated = answers[TERMINATING_QUESTION_ID] === "No"
 
   const steps = useMemo(
     () => buildFormSteps(selectedRole, isTerminated),
     [selectedRole, isTerminated]
   )
 
+  // Keep the URL (?step=N) and the store's currentStepIndex in sync in both
+  // directions, so browser Back/Forward moves one form step at a time
+  // instead of leaving the app. Wait for localStorage rehydration so a
+  // refresh doesn't briefly write "step=0" before the saved step loads.
+  useEffect(() => {
+    if (!hasHydrated) return
+
+    const stepFromUrl = Number(searchParams.get("step"))
+    const validStepFromUrl =
+      Number.isInteger(stepFromUrl) && stepFromUrl >= 0 && stepFromUrl < steps.length
+        ? stepFromUrl
+        : 0
+
+    if (!searchParams.has("step")) {
+      // No step in URL yet (first load) — write the current one.
+      setSearchParams({ step: String(currentStepIndex) }, { replace: true })
+    } else if (validStepFromUrl !== currentStepIndex) {
+      // URL changed (e.g. browser back/forward) — sync the store to match.
+      goToStep(validStepFromUrl)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, hasHydrated])
+
+  useEffect(() => {
+    // Clamp if steps shrink (e.g. role changes) and current index is now out of range.
+    if (currentStepIndex >= steps.length) {
+      goToStep(Math.max(0, steps.length - 1))
+    }
+  }, [steps.length, currentStepIndex, goToStep])
+
   const currentStep = steps[currentStepIndex]
   const isLastStep = currentStepIndex === steps.length - 1
   const isSubmitting = phase === "submitting"
+
+  const goToStepAndUrl = (index: number) => {
+    goToStep(index)
+    setSearchParams({ step: String(index) })
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   const handleAnswerChange = (questionId: string, value: AnswerValue) => {
     setAnswer(questionId, value)
@@ -64,6 +103,7 @@ export function ApplicationFormPage() {
     // Check termination right after validating the step that contains the question
     if (answers[TERMINATING_QUESTION_ID] === "No") {
       setPhase("terminated")
+      navigate("/terminated")
       return
     }
 
@@ -72,7 +112,7 @@ export function ApplicationFormPage() {
       return
     }
 
-    nextStep(steps.length)
+    goToStepAndUrl(currentStepIndex + 1)
   }
 
   const handleSubmit = async () => {
@@ -86,6 +126,8 @@ export function ApplicationFormPage() {
 
     if (result.success) {
       setPhase("submitted")
+      clearPersisted()
+      navigate("/submitted")
     } else {
       setSubmissionError(result.errorMessage)
       setPhase("form")
@@ -94,7 +136,7 @@ export function ApplicationFormPage() {
 
   const handleBack = () => {
     if (currentStepIndex === 0) return
-    prevStep()
+    goToStepAndUrl(currentStepIndex - 1)
   }
 
   if (!currentStep) return null
