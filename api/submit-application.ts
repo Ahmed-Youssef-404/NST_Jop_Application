@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node"
-import { writeToGoogleSheet } from "./_lib/google-sheet"
-import { sendTelegramNotification } from "./_lib/telegram"
+import { writeToGoogleSheet } from "./_lib/google-sheet.js"
+import { sendTelegramNotification } from "./_lib/telegram.js"
 
 interface IncomingPayload {
   submittedAt?: string
