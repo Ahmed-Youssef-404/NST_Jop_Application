@@ -10,6 +10,7 @@ import {
   Sparkles,
   Target,
   TrendingUp,
+  TriangleAlert,
   Users,
 } from "lucide-react"
 
@@ -215,7 +216,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
 
               {/* Mini stats */}
 
-              <div className="mt-10 flex items-center gap-6 border-t border-border/60 pt-5">
+              {/* <div className="mt-10 flex items-center gap-6 border-t border-border/60 pt-5">
                 <div>
                   <div className="text-xs font-semibold">Foundation</div>
                   <div className="mt-0.5 text-[10px] text-muted-foreground">
@@ -240,7 +241,30 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                     Become better every day
                   </div>
                 </div>
-              </div>
+              </div> */}
+
+              {/* Notice */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.4 }}
+                className="bg-[#140600] rounded-xl mt-8 flex justify-center max-w-lg items-start gap-2.5 border-t px-4 py-2"
+              >
+                <TriangleAlert className="mt-0.5 size-3.5 shrink-0 text-amber-500" />
+
+                <p className="text-[11px] leading-5 text-muted-foreground">
+                  <span className="font-semibold text-foreground">
+                    Before you continue:
+                  </span>{" "}
+                  NST team roles are{" "}
+                  <span className="font-semibold text-foreground">
+                    voluntary and unpaid
+                  </span>
+                  . Please make sure you understand the role you are applying
+                  for before submitting your application.
+                </p>
+              </motion.div>
+
             </motion.div>
 
             {/* Hero visual */}
