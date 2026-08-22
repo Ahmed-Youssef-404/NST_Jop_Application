@@ -9,6 +9,7 @@ import { SubmittedPage } from "@/pages/submitted-page"
 import { useFormStore } from "@/store/form-store"
 import StarsBackground from "@/components/StarsBackground"
 import { TERMINATING_QUESTION_ID } from "@/data/questions"
+import ScrolToTop from "@/components/ScrollToTop"
 
 function App() {
   const { phase, setPhase, selectedRole, toggleRole, answers, hasHydrated } =
@@ -59,47 +60,49 @@ function App() {
     <div className="min-h-screen bg-background" dir="ltr">
       <StarsBackground />
       <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route
-            path="/"
-            element={
-              <IntroPage
-                key="intro"
-                onApply={() => {
-                  setPhase("roles-overview")
-                  navigate("/roles")
-                }}
-              />
-            }
-          />
+        <ScrolToTop>
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <IntroPage
+                  key="intro"
+                  onApply={() => {
+                    setPhase("roles-overview")
+                    navigate("/roles")
+                  }}
+                />
+              }
+            />
 
-          <Route
-            path="/roles"
-            element={
-              <RolesOverviewPage
-                key="roles-overview"
-                selectedRole={selectedRole}
-                onSelectRole={toggleRole}
-                onBack={() => {
-                  setPhase("intro")
-                  navigate("/")
-                }}
-                onContinue={() => {
-                  setPhase("form")
-                  navigate("/form")
-                }}
-              />
-            }
-          />
+            <Route
+              path="/roles"
+              element={
+                <RolesOverviewPage
+                  key="roles-overview"
+                  selectedRole={selectedRole}
+                  onSelectRole={toggleRole}
+                  onBack={() => {
+                    setPhase("intro")
+                    navigate("/")
+                  }}
+                  onContinue={() => {
+                    setPhase("form")
+                    navigate("/form")
+                  }}
+                />
+              }
+            />
 
-          <Route path="/form" element={<ApplicationFormPage key="form" />} />
+            <Route path="/form" element={<ApplicationFormPage key="form" />} />
 
-          <Route path="/terminated" element={<TerminatedPage key="terminated" />} />
+            <Route path="/terminated" element={<TerminatedPage key="terminated" />} />
 
-          <Route path="/submitted" element={<SubmittedPage key="submitted" />} />
+            <Route path="/submitted" element={<SubmittedPage key="submitted" />} />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </ScrolToTop>
       </AnimatePresence>
     </div>
   )
