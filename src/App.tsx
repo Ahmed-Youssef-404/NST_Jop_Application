@@ -1,6 +1,6 @@
 import { AnimatePresence } from "framer-motion"
 import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { IntroPage } from "@/pages/intro-page"
 import { RolesOverviewPage } from "@/pages/roles-overview-page"
 import { ApplicationFormPage } from "@/pages/application-form-page"
@@ -60,6 +60,16 @@ function App() {
     // so we never flash the wrong page before a refresh restores state.
     return <div className="min-h-screen bg-background" dir="ltr" />
   }
+
+  const telegramSent = useRef(false)
+
+  useEffect(() => {
+    if (telegramSent.current) return
+
+    telegramSent.current = true
+
+    fetch("/api/send-telegram")
+  }, [])
 
   return (
     <div className="min-h-screen bg-background" dir="ltr">
