@@ -26,16 +26,19 @@ export const roles: RoleDefinition[] = [
   {
     id: "growth",
     icon: ChartNoAxesCombined,
-    title: "Growth & Outreach Team",
+    // title: "Growth & Outreach Team",
+    title: "Marketing & Communications",
     shortDescription:
       "Drive NST's growth through campaigns, content, partnerships, and events.",
     fullDescription:
       "Works on NST's growth, campaigns, social media, content, PR, partnerships, events, and new opportunities to increase NST's reach and impact.",
     responsibilities: [
-      "Plan and run growth campaigns",
       "Manage social media and content",
+      "Marketing Strategy",
+      "Graphic Design",
+      "Brand Identity",
       "Build partnerships and PR opportunities",
-      "Organize events",
+      "Organize Events and Campaigns",
       "Explore new growth opportunities",
     ],
   },

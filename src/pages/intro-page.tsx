@@ -80,7 +80,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                 onClick={onContinue}
                 className="group h-10 gap-2 rounded-lg px-5 text-sm shadow-lg shadow-primary/10"
               >
-                Explore Available Roles
+                Apply Now
 
                 <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>

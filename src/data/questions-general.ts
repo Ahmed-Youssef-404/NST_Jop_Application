@@ -31,12 +31,21 @@ export const basicInfoQuestions: Question[] = [
     required: true,
   },
   {
-    id: "academic_year",
+    id: "current_location",
     number: 6,
+    title: "Where are you From?",
+    type: "short-text",
+    placeholder: "ex. Alexandria, Egypt",
+    required: true,
+  },
+  {
+    id: "academic_year",
+    number: 7,
     title: "Academic Year",
     type: "single-choice",
     required: true,
     options: [
+      { value: "prep Year", label: "Prepratory Year" },
       { value: "1st Year", label: "1st Year" },
       { value: "2nd Year", label: "2nd Year" },
       { value: "3rd Year", label: "3rd Year" },
@@ -44,13 +53,6 @@ export const basicInfoQuestions: Question[] = [
       { value: "Graduate", label: "Graduate" },
       { value: "Other", label: "Other" },
     ],
-  },
-  {
-    id: "current_location",
-    number: 7,
-    title: "Where are you currently based?",
-    type: "short-text",
-    required: true,
   },
 ]
 
@@ -111,8 +113,15 @@ export const generalQuestions: Question[] = [
     required: true,
   },
   {
-    id: "unpaid_confirmation",
+    id: "hoping_to_gain",
     number: 14,
+    title: "What are you hoping to gain from joining NST?",
+    type: "paragraph",
+    required: true,
+  },
+  {
+    id: "unpaid_confirmation",
+    number: 15,
     title:
       "NST Team roles are voluntary and unpaid. Are you comfortable committing to the role without financial compensation?",
     type: "single-choice",
@@ -125,13 +134,6 @@ export const generalQuestions: Question[] = [
       },
       { value: "No", label: "No" },
     ],
-  },
-  {
-    id: "hoping_to_gain",
-    number: 15,
-    title: "What are you hoping to gain from joining NST?",
-    type: "paragraph",
-    required: true,
   },
 ]
 
@@ -148,7 +150,7 @@ export const finalQuestions: Question[] = [
     id: "heard_about_us",
     number: 26,
     title: "How did you hear about this opportunity?",
-    type: "single-choice",
+    type: "multi-choice",
     required: true,
     options: [
       { value: "Instagram", label: "Instagram" },
