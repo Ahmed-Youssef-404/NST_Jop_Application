@@ -6,6 +6,7 @@ import { RolesOverviewPage } from "@/pages/roles-overview-page"
 import { ApplicationFormPage } from "@/pages/application-form-page"
 import { TerminatedPage } from "@/pages/terminated-page"
 import { SubmittedPage } from "@/pages/submitted-page"
+import { AdminPage } from "@/pages/admin-page"
 import { useFormStore } from "@/store/form-store"
 import StarsBackground from "@/components/StarsBackground"
 import { TERMINATING_QUESTION_ID } from "@/data/questions"
@@ -27,6 +28,10 @@ function App() {
     if (!hasHydrated) return
 
     const path = location.pathname
+
+    // /admin is a separate, self-contained area (its own login) — it must
+    // never be pulled into the applicant-flow redirect guards below.
+    if (path.startsWith("/admin")) return
 
     // Only bounce back to /roles if we're actually still meant to be on the
     // form (phase === "form"). Once phase has moved on to "submitted" or
@@ -99,6 +104,8 @@ function App() {
             <Route path="/terminated" element={<TerminatedPage key="terminated" />} />
 
             <Route path="/submitted" element={<SubmittedPage key="submitted" />} />
+
+            <Route path="/admin" element={<AdminPage key="admin" />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

@@ -81,6 +81,32 @@ Copy `.env.example` and fill in:
 5. **Important**: the column order in `Code.gs` (`QUESTION_ID_ORDER`) must always match
    `allQuestionIds` in `src/data/questions.ts`. If you add/remove/reorder questions, update
    both, then create a *new* Apps Script deployment.
+6. In the Apps Script editor: Project Settings → Script Properties → add a property named
+   `SHEET_READ_SECRET` with a long random value. This gates the `doGet` endpoint used by the
+   admin dashboard to read applicants back out. Use the **same value** for `SHEET_READ_SECRET`
+   in your Vercel environment variables (below).
+
+## Admin Dashboard
+
+[#admin-dashboard](#admin-dashboard)
+
+A hidden route lets you log in and view all applicants, grouped by role, with every question
+and answer laid out.
+
+- **URL**: `/admin` (not linked anywhere in the UI — visit it directly)
+- **Login**: email + password, checked against `ADMIN_EMAIL` / `ADMIN_PASSWORD` env vars
+- **Session**: kept in memory only (React state) — refreshing the page logs you out and you
+  log in again. Nothing is persisted to cookies or localStorage.
+- **Data source**: same Google Sheet, read live via the Apps Script's `doGet`, gated by
+  `SHEET_READ_SECRET`.
+
+### Environment Variables for the admin dashboard
+
+- `ADMIN_EMAIL` — the email required to log in
+- `ADMIN_PASSWORD` — the password required to log in
+- `ADMIN_SESSION_SECRET` — a long random string used to sign short-lived session tokens
+  issued after login (separate from the sheet secret)
+- `SHEET_READ_SECRET` — must match the Script Property of the same name set in Apps Script
 
 ## Deployment
 
