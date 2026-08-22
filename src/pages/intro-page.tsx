@@ -708,7 +708,7 @@ export function IntroPage({ onApply }: LandingPageProps) {
       </section>
 
       {/* How to Apply / CTA */}
-      <section className="relative py-18 lg:py-18">
+      <section className="relative py-6 pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -747,20 +747,38 @@ export function IntroPage({ onApply }: LandingPageProps) {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-primary/5 py-12">
+      <footer className="border-t border-primary/20 py-6">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="text-center md:text-left">
-              <p className="text-sm font-semibold">Northern Stars Team — NST</p>
-              <p className="text-xs text-muted-foreground">Build. Grow. Impact.</p>
+            <div className="text-center md:text-left flex gap-4">
+              <img src="/logo1 - Copy.png" className="h-8" alt="NST" />
+              <div className="">
+                <p className="text-sm font-semibold">Northern Stars Team — NST</p>
+                <p className="text-xs text-muted-foreground">Build. Grow. Impact.</p>
+              </div>
             </div>
             <div className="flex gap-6 text-sm text-muted-foreground">
-              <button onClick={scrollToRoles} className="hover:text-foreground transition-colors">About NST</button>
-              <button onClick={scrollToRoles} className="hover:text-foreground transition-colors">Open Roles</button>
-              <button onClick={onApply} className="hover:text-foreground transition-colors">Apply Now</button>
+
+              {/* WhatsApp Icon */}
+              <button
+                onClick={() => window.open('https://wa.me/+201159169762', '_blank')}
+                className="cursor-pointer hover:scale-110 transition-scale duration-300 flex items-center gap-1"
+              >
+                <img src="/whatsapp-svgrepo-com.svg" alt="WhatsApp" className="w-6 h-6" />
+                {/* WhatsApp */}
+              </button>
+
+              {/* Email Icon */}
+              <button
+                onClick={() => window.location.href = 'mailto:we.northernstar@gmail.com'}
+                className="cursor-pointer hover:scale-110 transition-scale duration-300 flex items-center gap-1"
+              >
+                <img src="/email-svgrepo-com.svg" alt="Email" className="w-5 h-5" />
+                {/* Email */}
+              </button>
             </div>
             <p className="text-xs text-muted-foreground/60">
-              © 2026 Northern Stars Team. All rights reserved.
+              © 2026 Northern Stars Team. <br /> All rights reserved.
             </p>
           </div>
         </div>
