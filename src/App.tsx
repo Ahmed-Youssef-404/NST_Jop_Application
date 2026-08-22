@@ -65,7 +65,7 @@ function App() {
             element={
               <IntroPage
                 key="intro"
-                onContinue={() => {
+                onApply={() => {
                   setPhase("roles-overview")
                   navigate("/roles")
                 }}
