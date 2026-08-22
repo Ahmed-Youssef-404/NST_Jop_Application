@@ -416,7 +416,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                   01 / Who we are
                 </div>
 
-                <h2 className="max-w-sm text-2xl font-bold tracking-[-0.04em] sm:text-3xl">
+                <h2 className="max-w-sm text-2xl font-bold tracking-[0.02em] sm:text-3xl">
                   More than a community.
                 </h2>
               </div>
@@ -486,7 +486,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                 02 / Why NST
               </div>
 
-              <h2 className="text-3xl font-bold tracking-[-0.04em] sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-[0.02em] sm:text-4xl">
                 The hardest part isn't
                 <span className="text-muted-foreground"> coding.</span>
               </h2>
@@ -575,7 +575,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
 
           <Reveal delay={0.08}>
             <div className="max-w-6xl">
-              <p className="text-3xl font-bold leading-[1.1] tracking-[-0.045em] sm:text-4xl lg:text-4xl">
+              <p className="text-3xl font-bold leading-[1.1] tracking-[0.025em] sm:text-4xl lg:text-4xl">
                 We help students build a solid foundation,
                 <span className="text-muted-foreground">
                   {" "}
@@ -661,7 +661,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                   04 / What makes us different
                 </div>
 
-                <h2 className="text-2xl font-bold tracking-[-0.04em] sm:text-3xl">
+                <h2 className="text-2xl font-bold tracking-[0.02em] sm:text-3xl">
                   Growth over
                   <br />
                   completion.
@@ -732,7 +732,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                   05 / Core values
                 </div>
 
-                <h2 className="text-3xl font-bold tracking-[-0.04em] sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-[0.02em] sm:text-4xl">
                   How we show up.
                 </h2>
               </div>
@@ -796,7 +796,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                 06 / How we work
               </div>
 
-              <h2 className="text-3xl font-bold tracking-[-0.04em] sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-[0.02em] sm:text-4xl">
                 Don't wait to be told.
               </h2>
 
@@ -861,7 +861,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                   07 / The experience
                 </div>
 
-                <h2 className="text-2xl font-bold tracking-[-0.04em] sm:text-3xl">
+                <h2 className="text-2xl font-bold tracking-[0.02em] sm:text-3xl">
                   What we want you to say when it's over.
                 </h2>
               </div>
@@ -912,7 +912,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
             </div>
 
             <div className="max-w-5xl">
-              <h2 className="text-2xl font-bold leading-[1.08] tracking-[-0.045em] sm:text-3xl lg:text-5xl">
+              <h2 className="text-2xl font-bold leading-[1.08] tracking-[0.025em] sm:text-3xl lg:text-5xl">
                 We don't want NST to be
                 <span className="text-muted-foreground">
                   {" "}
@@ -1033,7 +1033,7 @@ export function IntroPage({ onContinue }: IntroPageProps) {
                   <Sparkles className="size-3.5 text-primary" />
                 </div>
 
-                <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-bold tracking-[-0.045em] sm:text-4xl">
+                <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-bold tracking-[0.025em] sm:text-4xl">
                   Your journey starts with
                   <span className="text-primary"> the right direction.</span>
                 </h2>
